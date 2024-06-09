@@ -1,5 +1,6 @@
 let studentsList = [];
 
+// Форматирование даты
 function formatDate(date) {
   let dd = date.getDate();
   if (dd < 10) dd = "0" + dd;
@@ -13,6 +14,19 @@ function formatDate(date) {
   return dd + "." + mm + "." + yy;
 }
 
+// Функция добавления даты поступления в интервале от 2000 до нынешнего года
+function minMaxStartValue(year) {
+    if (
+      year > new Date().getFullYear() ||
+      year < new Date(2000)
+    ) {
+      return alert("Введите корректную дату");
+    } else {
+      return year;
+    }
+  };
+
+// Функция создания нового студента
 function $getNewStudent(studObj) {
   const $dataList = document.createElement("tr");
   const $FIO = document.createElement("td");
@@ -42,7 +56,7 @@ function render(arr) {
 }
 
 render(studentsList);
-
+// Функция добавления нового студента в массив
 document
   .getElementById("add-form")
   .addEventListener("submit", function (event) {
@@ -53,7 +67,7 @@ document
       surname: document.getElementById("surname-inp").value,
       lastname: document.getElementById("lastname-inp").value,
       birthday: new Date(document.getElementById("birthday-inp").value),
-      start: parseInt(document.getElementById("start-inp").value),
+      start: minMaxStartValue(parseInt(document.getElementById("start-inp").value)),
       faculty: document.getElementById("faculty-inp").value,
     };
 
