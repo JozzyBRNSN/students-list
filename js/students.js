@@ -57,20 +57,35 @@ function render(arr) {
 
 render(studentsList);
 // Функция добавления нового студента в массив
+const $btn = document.getElementById("add-btn");
+
+let name = document.getElementById("name-inp");
+let surname = document.getElementById("surname-inp");
+let lastname = document.getElementById("lastname-inp");
+let birthday = document.getElementById("birthday-inp");
+let start = document.getElementById("start-inp");
+let faculty = document.getElementById("faculty-inp");
+
 document
   .getElementById("add-form")
   .addEventListener("submit", function (event) {
     event.preventDefault();
-
     let newStudentObj = {
-      name: document.getElementById("name-inp").value,
-      surname: document.getElementById("surname-inp").value,
-      lastname: document.getElementById("lastname-inp").value,
-      birthday: new Date(document.getElementById("birthday-inp").value),
-      start: minMaxStartValue(parseInt(document.getElementById("start-inp").value)),
-      faculty: document.getElementById("faculty-inp").value,
+      name: name.value,
+      surname: surname.value,
+      lastname: lastname.value,
+      birthday: new Date(birthday.value),
+      start: minMaxStartValue(parseInt(start.value)),
+      faculty: faculty.value,
     };
-
+ 
     studentsList.push(newStudentObj);
     render(studentsList);
+
+    name.value = "";
+    surname.value = "";
+    lastname.value = "";
+    birthday.value = "";
+    start.value = "";
+    faculty.value =  "";
   });
